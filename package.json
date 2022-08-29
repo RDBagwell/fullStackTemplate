@@ -7,12 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "install-server": "npm install --prefix server",
     "install-client": "npm install --prefix client",
-    "install": "npm run install-server && npm run install-client",
+    "install-all": "npm run install-server && npm run install-client",
     "client": "npm --prefix client start",
     "server": "npm --prefix server run dev",
-    "watch": "npm run server & npm run client",
+    "watch": "concurrently \"npm run server\" \"npm run client\"",
+    "windows-deploy": "npm run windows-build --prefix client && npm start --prefix server",
     "deploy": "npm run build --prefix client && npm start --prefix server"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  }
 }
